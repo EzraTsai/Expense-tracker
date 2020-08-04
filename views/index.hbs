@@ -1,1 +1,46 @@
-<h1>Test for project</h1>
+<div class="container-fluid border my-0 rounded-lg">
+    <div class="d-flex justify-content-end align-self-center mt-3 mr-3">
+        <div class="dropdown">
+            <button class="btn btn-light dropdown-toggle btn-lg rounded-pill" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Filter<i class="fas fa-filter ml-1"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#"><i class="fas fa-home"></i> 家居物業</a>
+                <a class="dropdown-item" href="#"><i class="fas fa-shuttle-van"></i> 交通出行</a>
+                <a class="dropdown-item" href="#"><i class="fas fa-grin-beam"></i> 休閒娛樂</a>
+                <a class="dropdown-item" href="#"><i class="fas fa-utensils"></i> 餐飲食品</a>
+                <a class="dropdown-item" href="#"><i class="fas fa-pen"></i> 其他</a>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-around mt-3">
+        <h4>Total:</h4>
+        <h1 class="text-danger">{{totalAmount}}</h1>
+        <span class="d-flex align-items-center">TWD</pan>
+    </div>
+    <hr>
+    <table class="table table-striped">
+        <tbody align="center">
+            {{#each records}}
+            <tr>
+                <td><i class="
+                    {{#checkIfSam this.category '家居物業'}} fas fa-home {{/checkIfSam}}
+                    {{#checkIfSam this.category '交通出行'}} fas fa-shuttle-van {{/checkIfSam}}
+                    {{#checkIfSam this.category '休閒娛樂'}} fas fa-grin-beam {{/checkIfSam}}
+                    {{#checkIfSam this.category '餐飲食品'}} fas fa-utensils {{/checkIfSam}}
+                    {{#checkIfSam this.category '其他'}} fas fa-pen {{/checkIfSam}}
+                    "> {{this.name}}</i></td>
+                <td>{{this.date}}</td>
+                <td align="end">{{this.amount}}</td>
+                <td align="end">
+                    <i class="fas fa-edit mr-3"></i>
+                    <i class="fas fa-trash" style="display: inline;"></i>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-success btn-lg btn-block mt-2 mb-3">Add<i
+            class="fas fa-plus ml-1"></i></button>
+</div>
