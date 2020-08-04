@@ -33,14 +33,43 @@
                     "> {{this.name}}</i></td>
                 <td>{{this.date}}</td>
                 <td align="end">{{this.amount}}</td>
-                <td align="end">
-                    <i class="fas fa-edit mr-3"></i>
-                    <i class="fas fa-trash" style="display: inline;"></i>
+                <td>
+                    <a class="btn" href="./records/{{this._id}}/edit">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal{{this._id}}"><i
+                            class="fas fa-trash" style="display: inline;"></i></button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal{{this._id}}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">提醒</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    是否確定刪除『{{this.date}}，{{this.name}}』的資料
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                                    <form action="/records/{{this._id}}/delete" method="POST" style="display: inline;">
+                                        <button type="submit" class="btn btn-primary">確定</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
             {{/each}}
         </tbody>
     </table>
-    <button type="button" class="btn btn-success btn-lg btn-block mt-2 mb-3">Add<i
-            class="fas fa-plus ml-1"></i></button>
+    <a href="./records/new">
+        <button type="submit" class="btn btn-success btn-lg btn-block mt-2 mb-3">Add<i
+                class="fas fa-plus ml-1"></i></button>
+    </a>
 </div>
