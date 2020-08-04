@@ -5,12 +5,12 @@ const recordSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    categoty: {
+    category: {
         type: String,
         required: true
     },
     date: {
-        type: Date,
+        type: String,
         required: true
     },
     amount: {

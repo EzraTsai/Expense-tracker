@@ -11,25 +11,25 @@ db.once('open', () => {
     Record.create(
         {
             name: "早餐",
-            categoty: "餐飲食品",
+            category: "餐飲食品",
             date: "2020-08-03",
             amount: "80"
         },
         {
             name: "健身",
-            categoty: "休閒娛樂",
+            category: "休閒娛樂",
             date: "2020-08-03",
             amount: "50"
         },
         {
             name: "房租",
-            categoty: "家居物業",
+            category: "家居物業",
             date: "2020-08-03",
             amount: "25000"
         },
         {
             name: "搭公車",
-            categoty: "交通出行",
+            category: "交通出行",
             date: "2020-08-03",
             amount: "36"
         }
