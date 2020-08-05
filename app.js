@@ -5,7 +5,10 @@ const Handlebars = require('handlebars')
 const Record = require('./models/record')
 const Category = require('./models/category')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 const app = express()
+
+app.use(methodOverride('_method'))
 
 mongoose.connect('mongodb://localhost/exprense-tracker', { useNewUrlParser: true, useUnifiedTopology: true })
 
@@ -70,7 +73,7 @@ app.get('/records/:id/edit', (req, res) => {
 })
 
 //edit expense
-app.post('/records/:id/edit', (req, res) => {
+app.put('/records/:id', (req, res) => {
     const id = req.params.id
     return Record.findById(id)
         .then(record => {
@@ -82,7 +85,7 @@ app.post('/records/:id/edit', (req, res) => {
 })
 
 //delete expense
-app.post('/records/:id/delete', (req, res) => {
+app.delete('/records/:id', (req, res) => {
     const id = req.params.id
     return Record.findById(id)
         .then(record => record.remove())
