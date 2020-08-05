@@ -1,5 +1,6 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
+const PORT = process.env.PORT || 3000
 const Handlebars = require('handlebars')
 const Record = require('./models/record')
 const Category = require('./models/category')
@@ -24,6 +25,6 @@ Handlebars.registerHelper('checkIfSam', function (category, currentCategory, opt
     return options.inverse(this)
 })
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log('App is running on http:localhost:3000')
 })
