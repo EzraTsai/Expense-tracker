@@ -1,7 +1,11 @@
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config()
+}
+require('./config/mongoose')
 const express = require('express')
 const session = require('express-session')
 const exphbs = require('express-handlebars')
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT
 const Handlebars = require('handlebars')
 const Record = require('./models/record')
 const Category = require('./models/category')
@@ -10,12 +14,11 @@ const methodOverride = require('method-override')
 const routes = require('./routes')
 const userPassport = require('./config/passport')
 const flash = require('connect-flash')
-require('./config/mongoose')
 
 const app = express()
 
 app.use(session({
-    secret:'MySecret',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true
 }))
