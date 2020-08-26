@@ -9,11 +9,11 @@ const categorySchema = new Schema({
         type: String,
         required: false
     },
-    userId: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        index: true,
-        required: true
-    }
+    // userId: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'User',
+    //     index: true,
+    //     required: true
+    // }
 })
 module.exports = mongoose.model('Category', categorySchema)
