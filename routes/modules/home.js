@@ -5,11 +5,12 @@ const Category = require('../../models/category')
 
 //index page
 router.get('/', (req, res) => {
-    return Record.find()
+    const userId = req.user._id
+    Record.find({ userId })
         .lean()
         .sort({ date: 'desc' })
         .then(records => {
-            const totalAmount = records.map(record => record.amount).reduce((accumulator, currentValue) => { return accumulator + currentValue })
+            const totalAmount = records.map(record => record.amount).reduce((accumulator, currentValue) => { return accumulator + currentValue }, 0)
             Category.find()
                 .lean()
                 .sort({ _id: 'asc' })

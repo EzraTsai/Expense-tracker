@@ -5,25 +5,26 @@ const Category = require('../../models/category')
 
 //filter
 router.get('/:id', (req, res) => {
-    const id = req.params.id
-    Category.findByIdAndUpdate(id)
+    const userId = req.user._id
+    const _id = req.params.id
+    Category.findByIdAndUpdate({ _id, userId })
         .lean()
         .sort({ _id: 'asc' })
         .then(categories => {
-            Record.find()
+            Record.find({ userId })
                 .lean()
                 .sort({ date: 'desc' })
                 .then(recordlist => {
                     let categoryAmount = [0]
                     let categoryList = []
                     for (a in recordlist ) {  
-                        if (categories.categoryName === recordlist [a].category) {
-                            categoryAmount.push(recordlist [a].amount)
-                            categoryList.push(recordlist [a])
+                        if (categories.categoryName === recordlist[a].category) {
+                            categoryAmount.push(recordlist[a].amount)
+                            categoryList.push(recordlist[a])
                         }
                     }
                     const records = categoryList
-                    const totalAmount = categoryAmount.reduce((accumulator, currentValue) => { return accumulator + currentValue })
+                    const totalAmount = categoryAmount.reduce((accumulator, currentValue) => { return accumulator + currentValue }, 0)
                     Category.find()
                     .lean()
                     .sort({ _id: 'asc' })

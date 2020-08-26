@@ -8,6 +8,12 @@ const categorySchema = new Schema({
     categoryIcon: {
         type: String,
         required: false
+    },
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        index: true,
+        required: true
     }
 })
 module.exports = mongoose.model('Category', categorySchema)
