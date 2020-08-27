@@ -21,6 +21,27 @@ const SEED_EXPENSE = [
         amount: "80",
     },
     {
+        name: "午餐",
+        category: "餐飲食品",
+        merchant: "錢都",
+        date: "2020-08-03",
+        amount: "250",
+    },
+    {
+        name: "飲料餐",
+        category: "餐飲食品",
+        merchant: "星巴克",
+        date: "2020-07-25",
+        amount: "120",
+    },
+    {
+        name: "晚餐",
+        category: "餐飲食品",
+        merchant: "藏壽司",
+        date: "2020-07-29",
+        amount: "320",
+    },
+    {
         name: "健身",
         merchant: "健身工廠",
         category: "休閒娛樂",
@@ -31,14 +52,14 @@ const SEED_EXPENSE = [
         name: "房租",
         merchant: "",
         category: "家居物業",
-        date: "2020-08-03",
+        date: "2020-08-05",
         amount: "25000",
     },
     {
         name: "搭公車",
         merchant: "",
         category: "交通出行",
-        date: "2020-08-03",
+        date: "2020-08-17",
         amount: "36",
     }
 ]
@@ -55,7 +76,7 @@ db.once('open', () => {
         .then(user => {
             const userId = user._id
             return Promise.all(Array.from(
-                { length: 4 },
+                { length: 7 },
                 (_, i) =>
                     Record.create({
                         name: SEED_EXPENSE[i].name,
