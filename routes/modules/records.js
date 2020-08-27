@@ -11,8 +11,8 @@ router.get('/new', (req, res) => {
 //create expense
 router.post('/', (req, res) => {
     const userId = req.user._id
-    const { name, category, date, amount } = req.body
-    return Record.create({ name, category, date, amount, userId})
+    const { name, merchant, category, date, amount } = req.body
+    return Record.create({ name, merchant, category, date, amount, userId})
         .then(() => res.redirect('/'))
         .catch(error => console.log(error))
 })

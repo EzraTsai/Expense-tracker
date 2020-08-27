@@ -16,23 +16,27 @@ const SEED_EXPENSE = [
     {
         name: "早餐",
         category: "餐飲食品",
+        merchant: "美之城",
         date: "2020-08-03",
         amount: "80",
     },
     {
         name: "健身",
+        merchant: "健身工廠",
         category: "休閒娛樂",
         date: "2020-08-03",
         amount: "50",
     },
     {
         name: "房租",
+        merchant: "",
         category: "家居物業",
         date: "2020-08-03",
         amount: "25000",
     },
     {
         name: "搭公車",
+        merchant: "",
         category: "交通出行",
         date: "2020-08-03",
         amount: "36",
@@ -55,6 +59,7 @@ db.once('open', () => {
                 (_, i) =>
                     Record.create({
                         name: SEED_EXPENSE[i].name,
+                        merchant: SEED_EXPENSE[i].merchant,
                         category: SEED_EXPENSE[i].category,
                         date: SEED_EXPENSE[i].date,
                         amount: SEED_EXPENSE[i].amount,
