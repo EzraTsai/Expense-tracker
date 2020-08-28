@@ -1,52 +1,32 @@
 <div class="container-fluid border my-0 rounded-lg ">
-    {{!-- <form method="GET" action="/filter">
-        <div class="d-flex justify-content-start align-self-center mt-3 mr-4">
-            <div class="dropdown">
-                <button class="btn btn-info dropdown-toggle btn-lg rounded-pill" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-filter ml-1"></i>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    {{#each categories}}
-                    <a href="/filter/{{this._id}}" class="dropdown-item"><i class="{{this.categoryIcon}}"></i>
-                        {{this.categoryName}}</a>
-                    {{/each}}
-                </div>
-            </div>
-            <div class="dropdown ml-3">
-                <button class="btn btn-warning dropdown-toggle btn-lg rounded-pill" type="button"
-                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                        class="fas fa-calendar-alt"></i>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    {{#each existYM}}
-                    <a href="/filter" class="dropdown-item text-center" value="{{this}}">【 {{this}} 】</a>
-                    {{/each}}
-                </div>
+    {{!-- <form method="GET" action="/filter"> --}}
+    <div class="d-flex justify-content-start align-self-center mt-3 mr-4">
+        <div class="dropdown">
+            <button class="btn btn-info dropdown-toggle btn-lg rounded-pill" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-filter ml-1"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {{#each categories}}
+                <a href="/?category={{this.categoryEnglishName}}&month={{existQuery}}" class="dropdown-item">
+                    <i class="{{this.categoryIcon}}"></i> {{this.categoryName}}
+                </a>
+                {{/each}}
             </div>
         </div>
-    </form> --}}
-    <form method="GET" action="/filter">
-        <div class="filter d-flex justify-content-start align-self-center mt-4">
-            <!-- 類別 -->
-            <div class="filter-category mb-4 mr-3">
-                <select class="form-control" id="filter-category" name="categories" onchange="submit()">
-                    <option value="">全部支出</option>
-                    {{#each categories}}
-                    <option value="{{this}}">{{this}}</option>
-                    {{/each}}
-                </select>
-            </div>
-            <!-- 月份 -->
-            <div class="filter-months">
-                <select class="form-control" id="filter-month" name="months" onchange="submit()">
-                    <option value="">全部月份</option>
-                    {{#each existYM}}
-                    <option value="{{this}}">{{this}}</option>
-                    {{/each}}
-                </select>
+        <div class="dropdown ml-3">
+            <button class="btn btn-warning dropdown-toggle btn-lg rounded-pill" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-calendar-alt"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {{#each existYM}}
+                <a href="/?month={{this}}&category={{categoryQuery}}" class="dropdown-item text-center">
+                    【 {{this}} 】
+                </a>
+                {{/each}}
             </div>
         </div>
-    </form>
+    </div>
+    {{!-- </form> --}}
     <div class="d-flex justify-content-around mt-3">
         <h4>Total:</h4>
         <h1 class="text-danger">{{totalAmount}}</h1>
