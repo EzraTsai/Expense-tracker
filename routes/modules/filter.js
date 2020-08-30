@@ -3,12 +3,20 @@ const router = express.Router()
 const Record = require('../../models/record')
 const Category = require('../../models/category')
 const { collections } = require('../../config/mongoose')
+const Handlebars = require('handlebars')
 
 router.get('/', (req, res) => {
     const { month, category } = req.query
-    let categoryQuery = req.query.category
-    let monthQuery = req.query.month
+    const categoryQuery = req.query.category
+    const monthQuery = req.query.month
     const userId = req.user._id
+    let allQuery = ''
+    if (req.query.category !== 0 && req.query.month !== 0) {
+        allQuery = `${month} ${category}`
+    }
+
+    Handlebars.registerHelper('categoryQueryHelper', function (options) {return options.fn(this)})
+
     Record.find({ userId })
         .lean()
         .sort({ date: 'desc' })
@@ -59,47 +67,11 @@ router.get('/', (req, res) => {
                     }
                     // 計算
                     const totalAmount = records.map(record => record.amount).reduce((accumulator, currentValue) => { return accumulator + currentValue }, 0)
-                    res.render('index', { records, totalAmount, categories,existYM, categoryQuery, monthQuery })
+                    res.render('index', { records, totalAmount, categories, existYM, allQuery, categoryQuery, monthQuery })
                 })
                 .catch(error => console.log(error))
         })
         .catch(error => console.log(error))
 })
-
-//filter
-// router.get('/:id', (req, res) => {
-//     const userId = req.user._id
-//     const _id = req.params.id
-//     Category.findByIdAndUpdate({ _id, userId })
-//         .lean()
-//         .sort({ _id: 'asc' })
-//         .then(categories => {
-//             Record.find({ userId })
-//                 .lean()
-//                 .sort({ date: 'desc' })
-//                 .then(recordlist => {
-//                     let categoryAmount = [0]
-//                     let categoryList = []
-//                     for (a in recordlist) {
-//                         if (categories.categoryName === recordlist[a].category) {
-//                             categoryAmount.push(recordlist[a].amount)
-//                             categoryList.push(recordlist[a])
-//                         }
-//                     }
-//                     const records = categoryList
-//                     const totalAmount = categoryAmount.reduce((accumulator, currentValue) => { return accumulator + currentValue }, 0)
-//                     Category.find()
-//                         .lean()
-//                         .sort({ _id: 'asc' })
-//                         .then(categorieslist => {
-//                             const categories = categorieslist
-//                             res.render('index', { totalAmount, records, categories })
-//                         })
-//                         .catch(error => console.log(error))
-//                 })
-//                 .catch(error => console.log(error))
-//         })
-//         .catch(error => console.log(error))
-// })
 
 module.exports = router
