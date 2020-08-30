@@ -5,6 +5,7 @@
 ![image](https://github.com/EzraTsai/Expense-tracker/blob/master/Picture/Picture%201.PNG)
 
 # Features - 產品功能
+* 測試帳號: user@example.com/ 測試密碼: 123456
 * 在首頁一次瀏覽所有支出的清單  
 * 在首頁看到所有支出清單的總金額  
 * 新增一筆支出  
